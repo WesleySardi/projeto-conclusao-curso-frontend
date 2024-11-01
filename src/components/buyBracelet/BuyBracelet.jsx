@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import ErrorPopUp from '../popup/ErrorPopup';
@@ -10,6 +10,7 @@ const FormContainer = styled.div`
   align-items: center;
   height: 100vh;
   background-color: #f5f5f5;
+  background-image: url('../img/backgrounds/wallpaperWorld.jpg');
 `;
 
 const TitleContainerPaid = styled.div`
@@ -24,6 +25,8 @@ const TitlePaid = styled.h1`
   text-align: center;
   margin-bottom: 20px;
   font-size: 30px;
+  color: white;
+  width: 60%;
 `;
 
 const ImagePaid = styled.img`
@@ -33,7 +36,7 @@ const ImagePaid = styled.img`
 
 const Title = styled.h1`
   font-size: 24px;
-  color: #333;
+  color: white;
   margin-bottom: 20px;
   text-align: center;
 `;
@@ -267,7 +270,7 @@ const BuyBracelet = () => {
       {paymentCondition ?
         <>
           <TitleContainerPaid>
-            <TitlePaid>Compra finalizada!</TitlePaid>
+            <TitlePaid>Compra finalizada! Verifique seu e-mail para maiores informações.</TitlePaid>
             <ImagePaid src="../img/icones/successIcon.png" alt="Imagem do item" />
           </TitleContainerPaid>
         </> : <>{isPopupActive ?

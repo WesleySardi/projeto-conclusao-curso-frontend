@@ -195,10 +195,10 @@ const CardText = styled.p`
     font-size: 1rem;
     color: ${props => props.isDarkMode ? props => props.theme.colors.white : props => props.theme.colors.grey};
     padding: 0 1vw;
+    margin-bottom: 15px;
 
     @media ${props => props.theme.breakpoints.hugeDesktop} {
         font-size: 1rem;
-        
     }
 
     @media ${props => props.theme.breakpoints.largeDesktop} {
@@ -357,8 +357,11 @@ const Cards = () => {
                 <Card onClick={isMobile ? () => setTimeout(() => { navigate(theme.links.card1) }, 1000) : () => { navigate(theme.links.card1) }} isDarkMode={isDarkMode}>
                     <CardImage src={theme.images.cardsImgs.card1Img} alt="Card Image" />
                     <ContentContainer>
-                        <CardTitle isDarkMode={isDarkMode}>Mais de 12.000 itens em estoque</CardTitle>
-                        <CardText isDarkMode={isDarkMode}>{theme.mainTexts.card1Text}<span>muito mais!</span></CardText>
+                        <CardTitle isDarkMode={isDarkMode}>Pulseira vermelha</CardTitle>
+                        <CardText isDarkMode={isDarkMode}>1. Resistente e Durável</CardText>
+                        <CardText isDarkMode={isDarkMode}>2. À Prova d'Água</CardText>
+                        <CardText isDarkMode={isDarkMode}>3. Conforto e Estilo Moderno</CardText>
+                        <CardText isDarkMode={isDarkMode} style={{ marginTop: '5%' }}><span>Valor: R$50 reais</span></CardText>
                         <ButtonWrapper>
                             <Button></Button>
                         </ButtonWrapper>
@@ -367,8 +370,11 @@ const Cards = () => {
                 <Card onClick={isMobile ? () => setTimeout(() => { navigate(theme.links.card2) }, 1000) : () => { navigate(theme.links.card2) }} isDarkMode={isDarkMode}>
                     <CardImage src={theme.images.cardsImgs.card2Img} alt="Card Image" />
                     <ContentContainer>
-                        <CardTitle isDarkMode={isDarkMode}>Montagem de Cabos Personalizados</CardTitle>
-                        <CardText isDarkMode={isDarkMode}>{theme.mainTexts.card2Text}</CardText>
+                        <CardTitle isDarkMode={isDarkMode}>Pulseira verde</CardTitle>
+                        <CardText isDarkMode={isDarkMode}>1. Fácil de Limpar</CardText>
+                        <CardText isDarkMode={isDarkMode}>2. Resistente e Versátil</CardText>
+                        <CardText isDarkMode={isDarkMode}>3. Leve e Confortável</CardText>
+                        <CardText isDarkMode={isDarkMode} style={{ marginTop: '5%' }}><span>Valor: R$60 reais</span></CardText>
                         <ButtonWrapper>
                             <Button></Button>
                         </ButtonWrapper>
@@ -377,8 +383,11 @@ const Cards = () => {
                 <Card onClick={isMobile ? () => setTimeout(() => { navigate(theme.links.card3) }, 1000) : () => { navigate(theme.links.card3) }} isDarkMode={isDarkMode}>
                     <CardImage src={theme.images.cardsImgs.card3Img} alt="Card Image" />
                     <ContentContainer>
-                        <CardTitle isDarkMode={isDarkMode}>Suprimentos de produtos personalizados</CardTitle>
-                        <CardText isDarkMode={isDarkMode}>{theme.mainTexts.card3Text}</CardText>
+                        <CardTitle isDarkMode={isDarkMode}>Pulseira azul</CardTitle>
+                        <CardText isDarkMode={isDarkMode}>1. Estilo Sofisticado</CardText>
+                        <CardText isDarkMode={isDarkMode}>2. Conforto ao Uso</CardText>
+                        <CardText isDarkMode={isDarkMode}>3. Design Respirável e Antissuor</CardText>
+                        <CardText isDarkMode={isDarkMode} style={{ marginTop: '5%' }}><span>Valor: R$40 reais</span></CardText>
                         <ButtonWrapper>
                             <Button></Button>
                         </ButtonWrapper>
@@ -386,9 +395,9 @@ const Cards = () => {
                 </Card>
             </SecondDiv>
             <ThirdDiv>
-                <BottomTitle isDarkMode={isDarkMode}>As melhores ferramentas estão aqui!</BottomTitle>
+                <BottomTitle isDarkMode={isDarkMode}>As melhores soluções estão aqui!</BottomTitle>
             </ThirdDiv>
-        </Container>
+        </Container >
     );
 };
 

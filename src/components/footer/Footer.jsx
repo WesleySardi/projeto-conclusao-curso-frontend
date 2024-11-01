@@ -38,7 +38,7 @@ const FooterText = styled.p`
 const Footer = () => {
   return (
     <FooterContainer>
-      <FooterText>Tokyo Componentes Eletrônicos LTDA - 2024 - Todos os direitos reservados.</FooterText>
+      <FooterText>Zlo Trackband - 2024 - Todos os direitos reservados.</FooterText>
     </FooterContainer>
   );
 };

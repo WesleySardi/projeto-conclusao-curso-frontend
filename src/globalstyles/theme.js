@@ -19,14 +19,14 @@ const theme = {
     /* ScrollBar */
 
     // Chrome and Safari
-    thumbBgColor: '#8b0000',
+    thumbBgColor: 'blue',
     trackBgColor: '#f0f0f0',
 
     // Firefox
-    scrollbarColor: '#8b0000 #f0f0f0',
+    scrollbarColor: 'blue #f0f0f0',
 
     // IE and Edge
-    scrollbarThumb: '#8b0000',
+    scrollbarThumb: 'blue',
     scrollbarTrack: '#f0f0f0'
   },
   fonts: {
@@ -86,9 +86,9 @@ const theme = {
     absoluteImg: '../img/logos/logo_zlo_png.png',
     absoluteDotsImg: '../img/icones/dotsImage.png',
     cardsImgs: {
-      card1Img: '../img/cards/pulseira_vermelha.jfif',
-      card2Img: '../img/cards/pulseira_verde.jfif',
-      card3Img: '../img/cards/pulseira_roxa.jfif'
+      card1Img: '../img/cards/braceletRedNoBG.png',
+      card2Img: '../img/cards/braceletGreenNoBG.png',
+      card3Img: '../img/cards/braceletBlueNoBG.png'
     },
     bannerImg: '../img/banners/bannerTec.jpg',
     halfBannerImg: '../img/banners/bannerReduzido.png',
@@ -122,9 +122,9 @@ const theme = {
     ecommerce: '/',
     confiraJa: '/',
     qualASuaDuvida: '/',
-    card1: '/',
-    card2: '/',
-    card3: '/',
+    card1: '/buyBracelet',
+    card2: '/buyBracelet',
+    card3: '/buyBracelet',
     banner: '/',
     post1: '/',
     post2: '/',
@@ -150,7 +150,7 @@ const theme = {
     card1Text: 'Componentes Eletrônicos, Cabos e Fios, Químicos, Ferramentas, Pilhas e Baterias, Informática, Elétrica, Conversores, Adaptadores, Rede, Robótica, IOT e ',
     card2Text: 'Profissionais especializados na montagem de cabos de áudio, vídeo, dados/serial, energia para facilitar ainda mais o seu dia a dia ou da sua empresa!',
     card3Text: 'Profissionais especializados na montagem de cabos de áudio, vídeo, dados/serial, energia para facilitar ainda mais o seu dia a dia ou da sua empresa!',
-    footerTokyoLogoText: 'Somos uma empresa de tecnologia com mais de 12.000 itens em eletrônica, automação e robótica. Desde 2010, oferecemos soluções inovadoras e um atendimento que compreende suas necessidades.'
+    footerTokyoLogoText: 'Somos um grupo de estudantes dedicados a desenvolver soluções de segurança e monitoramento. Desde 2021, focamos em inovação e cuidado ao criar dispositivos como pulseiras de localização, para garantir a proteção e tranquilidade de quem você ama.'
   },
   breakpoints: {
     mobile: '(max-width: 700px)',

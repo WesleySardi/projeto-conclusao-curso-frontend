@@ -216,21 +216,21 @@ const Arrow = styled.div`
 
 const images = [
   {
+    url: '../img/backgrounds/wallpaperWorld3.jpg',
+    title: 'Mantenha seus entes queridos perto de você!',
+    text: 'Mais de 200 itens em estoque!',
+    buttonText: 'Confira já!'
+  },
+  {
     url: '../img/backgrounds/wallpaperWorld.jpg',
-    title: 'Explore o mundo da eletrônica!',
-    text: 'Mais de 12.000 itens em estoque!',
+    title: 'Mantenha seus entes queridos perto de você!',
+    text: 'Mais de 200 itens em estoque!',
     buttonText: 'Confira já!'
   },
   {
     url: '../img/backgrounds/wallpaperWorld2.jpg',
-    title: 'Explore o mundo da eletrônica!',
-    text: 'Mais de 12.000 itens em estoque!',
-    buttonText: 'Confira já!'
-  },
-  {
-    url: '../img/backgrounds/wallpaperWorld3.jpg',
-    title: 'Explore o mundo da eletrônica!',
-    text: 'Mais de 12.000 itens em estoque!',
+    title: 'Mantenha seus entes queridos perto de você!',
+    text: 'Mais de 200 itens em estoque!',
     buttonText: 'Confira já!'
   },
 ];

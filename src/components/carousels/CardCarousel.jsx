@@ -320,31 +320,31 @@ const data = [
   {
     image: '../img/cards/backgroundHomeIdosos1.png',
     title: 'Dicas para escolher a pulseira ideal',
-    tag: 'Eletrônica',
+    tag: 'Localização',
     link: '/'
   },
   {
     image: '../img/cards/backgroundHomeIdosos2.jpg',
     title: 'Benefícios das pulseiras no tratamento de dependências',
-    tag: 'Robótica',
+    tag: 'Confiança',
     link: '/'
   },
   {
     image: '../img/cards/backgroundHomeIdosos3.png',
     title: 'Recursos essenciais de uma pulseira de apoio',
-    tag: 'Eletrônica',
+    tag: 'Localização',
     link: '/'
   },
   {
     image: '../img/cards/backgroundHomeIdosos1.png',
     title: 'Como pulseiras inteligentes ajudam na superação',
-    tag: 'Robótica',
+    tag: 'Amor',
     link: '/'
   },
   {
     image: '../img/cards/backgroundHomeIdosos2.jpg',
     title: 'Razões para usar pulseiras de suporte',
-    tag: 'Eletrônica',
+    tag: 'Confiança',
     link: '/'
   }
 ];

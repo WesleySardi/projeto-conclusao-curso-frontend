@@ -387,9 +387,9 @@ const OptionsFooter = () => {
           <Part>
             <PartFour>
               <Title>Ferramentas</Title>
-              <Text to={theme.links.ninjaAi}>Ninja Ai</Text>
-              <Text to={theme.links.calculadoraDeResistores}>Calculadora de Resistores</Text>
-              <Text to={theme.links.tabelasDeConversao}>Tabelas de Conversão</Text>
+              <Text to={theme.links.ninjaAi}>Pulseira impermeável</Text>
+              <Text to={theme.links.calculadoraDeResistores}>Localização em tempo real</Text>
+              <Text to={theme.links.tabelasDeConversao}>Registro de dependentes</Text>
             </PartFour>
           </Part>
           <Part>
@@ -398,7 +398,7 @@ const OptionsFooter = () => {
                 <Image src={theme.images.footerTokyoLogo} alt="Descrição da imagem" />
               </PartOneTop>
               <PartOneMiddle>
-                <TitlePartOne>Tokyo Componentes Eletrônicos</TitlePartOne>
+                <TitlePartOne>Zlo Trackband</TitlePartOne>
                 <TextPartOne>{theme.mainTexts.footerTokyoLogoText}</TextPartOne>
               </PartOneMiddle>
               <PartOneBottom>
@@ -419,7 +419,7 @@ const OptionsFooter = () => {
                 <Image src={theme.images.footerTokyoLogo} alt="Descrição da imagem" />
               </PartOneTop>
               <PartOneMiddle>
-                <TitlePartOne>Tokyo Componentes Eletrônicos</TitlePartOne>
+                <TitlePartOne>Zlo Trackband</TitlePartOne>
                 <TextPartOne>{theme.mainTexts.footerTokyoLogoText}</TextPartOne>
               </PartOneMiddle>
               <PartOneBottom>
@@ -450,9 +450,9 @@ const OptionsFooter = () => {
           <Part>
             <PartFour>
               <Title>Ferramentas</Title>
-              <Text to={theme.links.ninjaAi}>Ninja Ai</Text>
-              <Text to={theme.links.calculadoraDeResistores}>Calculadora de Resistores</Text>
-              <Text to={theme.links.tabelasDeConversao}>Tabelas de Conversão</Text>
+              <Text to={theme.links.ninjaAi}>Pulseira impermeável</Text>
+              <Text to={theme.links.calculadoraDeResistores}>Localização em tempo real</Text>
+              <Text to={theme.links.tabelasDeConversao}>Registro de dependentes</Text>
             </PartFour>
           </Part>
         </>
