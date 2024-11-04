@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 import ErrorPopUp from '../popup/ErrorPopup';
 
@@ -191,7 +192,7 @@ const BuyBracelet = () => {
     return cvvValue.slice(0, 3);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setPopupTitle('Carregando')
@@ -250,10 +251,14 @@ const BuyBracelet = () => {
       setExpiryDate('');
       setCvv('');
 
-      setTimeout(() => {
+      setTimeout(async () => {
         setPopupTitle('Sucesso')
         setPopupType('success')
         setPaymentCondition(true)
+
+        await axios.get(
+          `http://localhost:8080/api/email/sendQrCode?toEmail=wesley.sardi%40gmail.com`
+        );
       }, 3000)
     }
   };
