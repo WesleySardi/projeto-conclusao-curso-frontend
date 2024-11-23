@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import styled, { useTheme} from 'styled-components';
+import React, { useEffect, useState } from "react";
+import styled, { useTheme } from "styled-components";
 
-import FormBanner from '../components/banners/FormBanner';
-import CardCarousel from '../components/carousels/CardCarousel';
-import Cards from '../components/cards/Cards';
-import Banner from '../components/banners/Banner';
-import Footer from '../components/footer/Footer';
-import OptionsFooter from '../components/footer/OptionsFooter';
+import FormBanner from "../components/banners/FormBanner";
+import CardCarousel from "../components/carousels/CardCarousel";
+import Cards from "../components/cards/Cards";
+import Banner from "../components/banners/Banner";
+import Footer from "../components/footer/Footer";
+import OptionsFooter from "../components/footer/OptionsFooter";
 
-import MainCarousel from '../components/carousels/MainCarousel';
+import MainCarousel from "../components/carousels/MainCarousel";
 
 const Container = styled.div`
   width: 100vw;
@@ -23,27 +23,27 @@ const CenterBottomImage = styled.img`
   height: auto;
   z-index: 1;
 
-  @media ${props => props.theme.breakpoints.hugeDesktop} {
+  @media ${(props) => props.theme.breakpoints.hugeDesktop} {
     bottom: -28px;
     width: 55px;
   }
 
-  @media ${props => props.theme.breakpoints.largeDesktop} {
+  @media ${(props) => props.theme.breakpoints.largeDesktop} {
     bottom: -28px;
     width: 55px;
   }
 
-  @media ${props => props.theme.breakpoints.smallDesktop} {
+  @media ${(props) => props.theme.breakpoints.smallDesktop} {
     bottom: -28px;
     width: 55px;
   }
 
-  @media ${props => props.theme.breakpoints.tablet} {
+  @media ${(props) => props.theme.breakpoints.tablet} {
     bottom: -25px;
     width: 50px;
   }
 
-  @media ${props => props.theme.breakpoints.mobile} {
+  @media ${(props) => props.theme.breakpoints.mobile} {
     bottom: -25px;
     width: 50px;
   }
@@ -57,33 +57,33 @@ const CenterBottomImage2 = styled.img`
   height: auto;
   z-index: 1;
 
-  @media ${props => props.theme.breakpoints.hugeDesktop} {
+  @media ${(props) => props.theme.breakpoints.hugeDesktop} {
     bottom: 35px;
     width: 10px;
   }
 
-  @media ${props => props.theme.breakpoints.largeDesktop} {
+  @media ${(props) => props.theme.breakpoints.largeDesktop} {
     bottom: 35px;
     width: 10px;
   }
 
-  @media ${props => props.theme.breakpoints.smallDesktop} {
+  @media ${(props) => props.theme.breakpoints.smallDesktop} {
     bottom: 35px;
     width: 10px;
   }
 
-  @media ${props => props.theme.breakpoints.tablet} {
+  @media ${(props) => props.theme.breakpoints.tablet} {
     bottom: 35px;
     width: 10px;
   }
 
-  @media ${props => props.theme.breakpoints.mobile} {
+  @media ${(props) => props.theme.breakpoints.mobile} {
     bottom: 35px;
     width: 10px;
   }
 `;
 
-function Home() {
+const Home = () => {
   const [isMobile, setIsMobile] = useState(false);
   const theme = useTheme();
 
@@ -94,27 +94,32 @@ function Home() {
 
     handleResize();
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
     <Container>
-      <CenterBottomImage src={theme.images.absoluteImg} alt="Outra descrição da imagem" />
-      <CenterBottomImage2 src={theme.images.absoluteDotsImg} alt="Outra descrição da imagem" />
+      <CenterBottomImage
+        src={theme.images.absoluteImg}
+        alt="Outra descrição da imagem"
+      />
+      <CenterBottomImage2
+        src={theme.images.absoluteDotsImg}
+        alt="Outra descrição da imagem"
+      />
       <MainCarousel />
       <Cards />
-      <Banner link={theme.links.banner} image={isMobile ? theme.images.halfBannerImg : theme.images.bannerImg} />
+      <Banner
+        link={theme.links.banner}
+        image={isMobile ? theme.images.halfBannerImg : theme.images.bannerImg}
+      />
       <CardCarousel />
       <FormBanner />
       <OptionsFooter />
-      {isMobile ?
-        <></>
-        :
-        <Footer />
-      }
+      {isMobile ? <></> : <Footer />}
     </Container>
   );
-}
+};
 
 export default Home;

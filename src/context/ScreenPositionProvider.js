@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 const ScreenPositionContext = createContext();
 
@@ -18,7 +18,7 @@ const ScreenPositionProvider = ({ children }) => {
       if (!inThrottle) {
         func.apply(context, args);
         inThrottle = true;
-        setTimeout(() => inThrottle = false, limit);
+        setTimeout(() => (inThrottle = false), limit);
       }
     };
   };
@@ -32,12 +32,12 @@ const ScreenPositionProvider = ({ children }) => {
       setIsAtTop(window.scrollY === 0);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('scroll', handleTopScroll);
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleTopScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('scroll', handleTopScroll);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleTopScroll);
     };
   }, []);
 
@@ -50,8 +50,8 @@ const ScreenPositionProvider = ({ children }) => {
 
     handleResize();
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const value = {

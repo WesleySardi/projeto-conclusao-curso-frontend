@@ -1,17 +1,24 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import { ThemeProvider } from "styled-components";
 
-import GlobalStyles from './globalstyles/GlobalStyles';
+import GlobalStyles from "./globalstyles/GlobalStyles";
 
-import Header from './components/header/Header';
+import Header from "./components/header/Header";
 
-import theme from './globalstyles/theme';
+import theme from "./globalstyles/theme";
 
-import Home from './pages/Home';
-import BuyBracelet from './components/buyBracelet/BuyBracelet';
+import Home from "./pages/Home";
+import BuyBracelet from "./components/buyBracelet/BuyBracelet";
 
-import ScreenPositionProvider, { useScreenPositionContext } from './context/ScreenPositionProvider';
+import ScreenPositionProvider, {
+  useScreenPositionContext,
+} from "./context/ScreenPositionProvider";
 
 const AppWrapper = () => {
   const { isDarkMode } = useScreenPositionContext();
@@ -20,17 +27,16 @@ const AppWrapper = () => {
   return (
     <>
       <GlobalStyles isDarkMode={isDarkMode} />
-        {location.pathname === '/home' && <Header />}
-        <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/buyBracelet" element={<BuyBracelet />} />
-        </Routes>
-      
+      {location.pathname === "/home" && <Header />}
+      <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route path="/buyBracelet" element={<BuyBracelet />} />
+      </Routes>
     </>
   );
 };
 
-function App() {
+const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <ScreenPositionProvider>
@@ -40,6 +46,6 @@ function App() {
       </ScreenPositionProvider>
     </ThemeProvider>
   );
-}
+};
 
 export default App;
