@@ -401,13 +401,13 @@ const OptionsFooter = () => {
             <PartOne>
               <PartOneTop>
                 <Image
-                  src={theme.images.footerTokyoLogo}
+                  src={theme.images.footerZloLogo}
                   alt="Descrição da imagem"
                 />
               </PartOneTop>
               <PartOneMiddle>
                 <TitlePartOne>Zlo Trackband</TitlePartOne>
-                <TextPartOne>{theme.mainTexts.footerTokyoLogoText}</TextPartOne>
+                <TextPartOne>{theme.mainTexts.footerZloLogoText}</TextPartOne>
               </PartOneMiddle>
               <PartOneBottom>
                 <StyledLink to={theme.links.tiktok}>
@@ -435,13 +435,13 @@ const OptionsFooter = () => {
             <PartOne>
               <PartOneTop>
                 <Image
-                  src={theme.images.footerTokyoLogo}
+                  src={theme.images.footerZloLogo}
                   alt="Descrição da imagem"
                 />
               </PartOneTop>
               <PartOneMiddle>
                 <TitlePartOne>Zlo Trackband</TitlePartOne>
-                <TextPartOne>{theme.mainTexts.footerTokyoLogoText}</TextPartOne>
+                <TextPartOne>{theme.mainTexts.footerZloLogoText}</TextPartOne>
               </PartOneMiddle>
               <PartOneBottom>
                 <StyledLink to={theme.links.tiktok}>

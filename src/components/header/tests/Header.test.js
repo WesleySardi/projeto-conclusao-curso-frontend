@@ -5,23 +5,26 @@ import Header from "../Header";
 import { ThemeProvider } from "styled-components";
 import { waitFor } from "@testing-library/react";
 import theme from "../../../globalstyles/theme";
+import { act } from "react";
 
 export default theme;
 
 describe("Header Component", () => {
-  test("deve renderizar o componente Header corretamente", async () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <Router>
-          <ScreenPositionProvider>
-            <Header />
-          </ScreenPositionProvider>
-        </Router>
-      </ThemeProvider>
-    );
+  test("Deve renderizar o componente Header corretamente", async () => {
+    await act(async () => {
+      render(
+        <ThemeProvider theme={theme}>
+          <Router>
+            <ScreenPositionProvider>
+              <Header />
+            </ScreenPositionProvider>
+          </Router>
+        </ThemeProvider>
+      );
+    });
 
     await waitFor(() => {
-      const logoImage = screen.getByRole("img", { name: /logo/i });
+      const logoImage = screen.getByRole("img");
       expect(logoImage).toHaveAttribute("src", "../img/logos/logo_zlo_png.png");
     });
   });

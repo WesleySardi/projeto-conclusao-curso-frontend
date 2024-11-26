@@ -9,6 +9,8 @@ const ScreenPositionProvider = ({ children }) => {
   const [isTablet, setIsTablet] = useState(false);
   const [isSmallDesktop, setIsSmallDesktop] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [braceletValue, setBraceletValue] = useState(0);
+  const [braceletColor, setBraceletColor] = useState("");
 
   const throttle = (func, limit) => {
     let inThrottle;
@@ -67,6 +69,10 @@ const ScreenPositionProvider = ({ children }) => {
     setIsSmallDesktop,
     isDarkMode,
     setIsDarkMode,
+    braceletColor,
+    setBraceletColor,
+    braceletValue,
+    setBraceletValue,
   };
 
   return (

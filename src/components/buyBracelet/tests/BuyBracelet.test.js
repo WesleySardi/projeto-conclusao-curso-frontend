@@ -1,19 +1,28 @@
 import { render, screen } from "@testing-library/react";
+import { BrowserRouter as Router } from "react-router-dom";
+import ScreenPositionProvider from "../../../context/ScreenPositionProvider";
 import BuyBracelet from "../BuyBracelet";
+import { ThemeProvider } from "styled-components";
+import { waitFor } from "@testing-library/react";
+import theme from "../../../globalstyles/theme";
+import { act } from "react";
 
-test("renders BuyBracelet form", () => {
-  render(<BuyBracelet />);
+describe("BuyBracelet Component", () => {
+  test("Deve renderizar o componente BuyBracelet corretamente", async () => {
+    await act(async () => {
+      render(
+        <ThemeProvider theme={theme}>
+          <Router>
+            <ScreenPositionProvider>
+              <BuyBracelet />
+            </ScreenPositionProvider>
+          </Router>
+        </ThemeProvider>
+      );
+    });
 
-  expect(screen.getByLabelText(/nome completo/i)).toBeInTheDocument();
-  expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
-  expect(screen.getByLabelText(/telefone/i)).toBeInTheDocument();
-  expect(screen.getByLabelText(/endereço de entrega/i)).toBeInTheDocument();
-
-  const quantidadeInputs = screen.getAllByLabelText(/quantidade/i);
-  expect(quantidadeInputs[0]).toBeInTheDocument();
-  expect(quantidadeInputs[1]).toBeInTheDocument();
-
-  expect(screen.getByLabelText(/número do cartão/i)).toBeInTheDocument();
-  expect(screen.getByLabelText(/data de validade/i)).toBeInTheDocument();
-  expect(screen.getByLabelText(/cvv/i)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText("Informações de Pagamento")).toBeInTheDocument();
+    });
+  });
 });

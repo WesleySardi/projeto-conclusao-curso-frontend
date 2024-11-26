@@ -5,20 +5,23 @@ import OptionsFooter from "../OptionsFooter";
 import { ThemeProvider } from "styled-components";
 import { waitFor } from "@testing-library/react";
 import theme from "../../../globalstyles/theme";
+import { act } from "react";
 
 export default theme;
 
 describe("OptionsFooter Component", () => {
-  test("deve renderizar o componente OptionsFooter corretamente", async () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <Router>
-          <ScreenPositionProvider>
-            <OptionsFooter />
-          </ScreenPositionProvider>
-        </Router>
-      </ThemeProvider>
-    );
+  test("Deve renderizar o componente OptionsFooter corretamente", async () => {
+    await act(async () => {
+      render(
+        <ThemeProvider theme={theme}>
+          <Router>
+            <ScreenPositionProvider>
+              <OptionsFooter />
+            </ScreenPositionProvider>
+          </Router>
+        </ThemeProvider>
+      );
+    });
 
     await waitFor(() => {
       expect(screen.getByText("Links úteis")).toBeInTheDocument();

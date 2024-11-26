@@ -5,20 +5,23 @@ import Footer from "../Footer";
 import { ThemeProvider } from "styled-components";
 import { waitFor } from "@testing-library/react";
 import theme from "../../../globalstyles/theme";
+import { act } from "react";
 
 export default theme;
 
 describe("Footer Component", () => {
-  test("deve renderizar o componente Footer corretamente", async () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <Router>
-          <ScreenPositionProvider>
-            <Footer />
-          </ScreenPositionProvider>
-        </Router>
-      </ThemeProvider>
-    );
+  test("Deve renderizar o componente Footer corretamente", async () => {
+    await act(async () => {
+      render(
+        <ThemeProvider theme={theme}>
+          <Router>
+            <ScreenPositionProvider>
+              <Footer />
+            </ScreenPositionProvider>
+          </Router>
+        </ThemeProvider>
+      );
+    });
 
     await waitFor(() => {
       expect(

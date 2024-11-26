@@ -871,12 +871,7 @@ const Header = () => {
         <BackgroundStyleBlur {...commonProps} />
         <HeaderStyle>
           <ImgStyleLogo
-            src={
-              isSidebarActive
-                ? theme.images.headerCompanyLettersLogo
-                : theme.images.headerCompanyLogo
-            }
-            alt="ZloLogo"
+            src={isSidebarActive ? "" : theme.images.headerCompanyLogo}
             {...commonProps}
           />
         </HeaderStyle>

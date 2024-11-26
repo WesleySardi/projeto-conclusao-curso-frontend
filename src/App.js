@@ -4,15 +4,14 @@ import {
   Routes,
   Route,
   useLocation,
+  Navigate,
 } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { ThemeProvider } from "styled-components";
-
 import GlobalStyles from "./globalstyles/GlobalStyles";
-
 import Header from "./components/header/Header";
-
 import theme from "./globalstyles/theme";
-
 import Home from "./pages/Home";
 import BuyBracelet from "./components/buyBracelet/BuyBracelet";
 
@@ -31,7 +30,9 @@ const AppWrapper = () => {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/buyBracelet" element={<BuyBracelet />} />
+        <Route path="*" element={<Navigate to="/home" replace />} />
       </Routes>
+      <ToastContainer />
     </>
   );
 };

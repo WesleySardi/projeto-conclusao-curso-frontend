@@ -5,20 +5,23 @@ import MainCarousel from "../MainCarousel";
 import { ThemeProvider } from "styled-components";
 import { waitFor } from "@testing-library/react";
 import theme from "../../../globalstyles/theme";
+import { act } from "react";
 
 export default theme;
 
 describe("MainCarousel Component", () => {
-  test("deve renderizar o componente MainCarousel corretamente", async () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <Router>
-          <ScreenPositionProvider>
-            <MainCarousel />
-          </ScreenPositionProvider>
-        </Router>
-      </ThemeProvider>
-    );
+  test("Deve renderizar o componente MainCarousel corretamente", async () => {
+    await act(async () => {
+      render(
+        <ThemeProvider theme={theme}>
+          <Router>
+            <ScreenPositionProvider>
+              <MainCarousel />
+            </ScreenPositionProvider>
+          </Router>
+        </ThemeProvider>
+      );
+    });
 
     await waitFor(() => {
       const buttons = screen.getAllByText("Confira já!");

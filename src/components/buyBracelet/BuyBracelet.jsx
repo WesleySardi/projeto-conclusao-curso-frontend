@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import axios from 'axios';
+import React, { useState } from "react";
+import styled from "styled-components";
+import axios from "axios";
+import { useScreenPositionContext } from "../../context/ScreenPositionProvider";
 
-import ErrorPopUp from '../popup/ErrorPopup';
+import ErrorPopUp from "../popup/ErrorPopup";
 
 const FormContainer = styled.div`
   display: flex;
@@ -11,7 +12,7 @@ const FormContainer = styled.div`
   align-items: center;
   height: 100vh;
   background-color: #f5f5f5;
-  background-image: url('../img/backgrounds/wallpaperWorld.jpg');
+  background-image: url("../img/backgrounds/wallpaperWorld.jpg");
 `;
 
 const TitleContainerPaid = styled.div`
@@ -118,19 +119,20 @@ const ErrorMessage = styled.div`
 `;
 
 const BuyBracelet = () => {
+  const { braceletValue, braceletColor } = useScreenPositionContext();
   const [quantity, setQuantity] = useState(1);
   const [quantityParcelas, setQuantityParcelas] = useState(1);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
-  const [cardNumber, setCardNumber] = useState('');
-  const [expiryDate, setExpiryDate] = useState('');
-  const [cvv, setCvv] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [expiryDate, setExpiryDate] = useState("");
+  const [cvv, setCvv] = useState("");
 
   const [errors, setErrors] = useState({});
 
-  const pricePerItem = 49.99;
+  const pricePerItem = braceletValue;
   const totalPrice = (quantity * pricePerItem).toFixed(2);
 
   const [isPopupActive, setIsPopupActive] = useState(false);
@@ -139,7 +141,7 @@ const BuyBracelet = () => {
   const [popupTitle, setPopupTitle] = useState("Carregando");
   const [popupText] = useState("Compra realizada com sucesso!");
 
-  const [paymentCondition, setPaymentCondition] = useState(false)
+  const [paymentCondition, setPaymentCondition] = useState(false);
 
   const validateName = (name) => {
     const re = /^[A-Za-z\s]+$/;
@@ -157,11 +159,17 @@ const BuyBracelet = () => {
   };
 
   const formatPhoneNumber = (value) => {
-    const phoneValue = value.replace(/\D/g, '');
+    const phoneValue = value.replace(/\D/g, "");
     if (phoneValue.length >= 11) {
-      return `(${phoneValue.slice(0, 2)}) ${phoneValue.slice(2, 7)}-${phoneValue.slice(7, 11)}`;
+      return `(${phoneValue.slice(0, 2)}) ${phoneValue.slice(
+        2,
+        7
+      )}-${phoneValue.slice(7, 11)}`;
     } else if (phoneValue.length >= 7) {
-      return `(${phoneValue.slice(0, 2)}) ${phoneValue.slice(2, 7)}-${phoneValue.slice(7)}`;
+      return `(${phoneValue.slice(0, 2)}) ${phoneValue.slice(
+        2,
+        7
+      )}-${phoneValue.slice(7)}`;
     } else if (phoneValue.length > 2) {
       return `(${phoneValue.slice(0, 2)}) ${phoneValue.slice(2)}`;
     } else {
@@ -170,16 +178,16 @@ const BuyBracelet = () => {
   };
 
   const formatCardNumber = (value) => {
-    const cardValue = value.replace(/\D/g, '').slice(0, 16);
+    const cardValue = value.replace(/\D/g, "").slice(0, 16);
     const formattedValue = cardValue
       .match(/.{1,4}/g)
-      ?.join(' ')
+      ?.join(" ")
       .trim();
-    return formattedValue || '';
+    return formattedValue || "";
   };
 
   const formatExpiryDate = (value) => {
-    const dateValue = value.replace(/\D/g, '');
+    const dateValue = value.replace(/\D/g, "");
     if (dateValue.length >= 2) {
       return `${dateValue.slice(0, 2)}/${dateValue.slice(2, 4)}`;
     } else {
@@ -188,105 +196,120 @@ const BuyBracelet = () => {
   };
 
   const formatCvv = (value) => {
-    const cvvValue = value.replace(/\D/g, '');
+    const cvvValue = value.replace(/\D/g, "");
     return cvvValue.slice(0, 3);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setPopupTitle('Carregando')
-    setPopupType('loading')
+    setPopupTitle("Carregando");
+    setPopupType("loading");
 
     const validationErrors = {};
 
     if (!name || !validateName(name)) {
-      validationErrors.name = 'O nome é obrigatório e não pode conter números.';
+      validationErrors.name = "O nome é obrigatório e não pode conter números.";
     }
 
     if (!name || /\d/.test(name)) {
-      validationErrors.name = 'O nome é obrigatório e não pode conter números.';
+      validationErrors.name = "O nome é obrigatório e não pode conter números.";
     }
 
     if (!email || !validateEmail(email)) {
-      validationErrors.email = 'Email inválido.';
+      validationErrors.email = "Email inválido.";
     }
 
     if (!phone || !validatePhone(phone)) {
-      validationErrors.phone = 'Telefone inválido.';
+      validationErrors.phone = "Telefone inválido.";
     }
 
     if (!address) {
-      validationErrors.address = 'O endereço é obrigatório.';
+      validationErrors.address = "O endereço é obrigatório.";
     }
 
-    if (!cardNumber.replace(/\s+/g, '')) {
-      validationErrors.cardNumber = 'Número do cartão é obrigatório.';
+    if (!cardNumber.replace(/\s+/g, "")) {
+      validationErrors.cardNumber = "Número do cartão é obrigatório.";
     }
 
     if (!cardNumber || !/^\d{4} \d{4} \d{4} \d{4}$/.test(cardNumber)) {
-      validationErrors.cardNumber = 'O número do cartão é obrigatório e deve ter 16 dígitos.';
+      validationErrors.cardNumber =
+        "O número do cartão é obrigatório e deve ter 16 dígitos.";
     }
 
     if (!expiryDate || !/^\d{2}\/\d{2}$/.test(expiryDate)) {
-      validationErrors.expiryDate = 'A data de validade é obrigatória e deve estar no formato MM/AA.';
+      validationErrors.expiryDate =
+        "A data de validade é obrigatória e deve estar no formato MM/AA.";
     }
 
     if (!cvv || !/^\d{3}$/.test(cvv)) {
-      validationErrors.cvv = 'O CVV é obrigatório e deve ter 3 dígitos.';
+      validationErrors.cvv = "O CVV é obrigatório e deve ter 3 dígitos.";
     }
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
-      setIsPopupActive(true)
+      setIsPopupActive(true);
       setErrors({});
       setQuantity(1);
       setQuantityParcelas(1);
-      setName('');
-      setEmail('');
-      setPhone('');
-      setAddress('');
-      setCardNumber('');
-      setExpiryDate('');
-      setCvv('');
+      setName("");
+      setEmail("");
+      setPhone("");
+      setAddress("");
+      setCardNumber("");
+      setExpiryDate("");
+      setCvv("");
 
       setTimeout(async () => {
-        setPopupTitle('Sucesso')
-        setPopupType('success')
-        setPaymentCondition(true)
+        setPopupTitle("Sucesso");
+        setPopupType("success");
+        setPaymentCondition(true);
 
         await axios.get(
           `http://localhost:8080/api/email/sendQrCode?toEmail=wesley.sardi%40gmail.com`
         );
-      }, 3000)
+      }, 3000);
     }
   };
 
   const handleNameChange = (e) => {
     const input = e.target.value;
 
-    const sanitizedInput = input.replace(/[^a-zA-Z\s]/g, '');
+    const sanitizedInput = input.replace(/[^a-zA-Z\s]/g, "");
     setName(sanitizedInput);
   };
 
   return (
     <FormContainer>
-      {paymentCondition ?
+      {paymentCondition ? (
         <>
           <TitleContainerPaid>
-            <TitlePaid>Compra finalizada! Verifique seu e-mail para maiores informações.</TitlePaid>
-            <ImagePaid src="../img/icones/successIcon.png" alt="Imagem do item" />
+            <TitlePaid>
+              Compra finalizada! Verifique seu e-mail para maiores informações.
+            </TitlePaid>
+            <ImagePaid
+              src="../img/icones/successIcon.png"
+              alt="Imagem de sucesso"
+            />
           </TitleContainerPaid>
-        </> : <>{isPopupActive ?
-          <ErrorPopUp onClose={() => {
-            setIsPopupActive(false)
-            document.documentElement.style.overflowY = 'auto';
-            document.body.style.overflowY = 'auto';
-          }} title={popupTitle} text={popupText} popupType={popupType} />
-          :
-          <></>
-        }
+        </>
+      ) : (
+        <>
+          {isPopupActive ? (
+            <ErrorPopUp
+              onClose={() => {
+                setIsPopupActive(false);
+                document.documentElement.style.overflowY = "auto";
+                document.body.style.overflowY = "auto";
+              }}
+              title={popupTitle}
+              text={popupText}
+              popupType={popupType}
+            />
+          ) : (
+            <></>
+          )}
           <Title>Informações de Pagamento</Title>
           <Form onSubmit={handleSubmit}>
             <InputGroup>
@@ -372,7 +395,9 @@ const BuyBracelet = () => {
                 maxLength={19}
                 required
               />
-              {errors.cardNumber && <ErrorMessage>{errors.cardNumber}</ErrorMessage>}
+              {errors.cardNumber && (
+                <ErrorMessage>{errors.cardNumber}</ErrorMessage>
+              )}
 
               <Label htmlFor="expiryDate">Data de Validade</Label>
               <Input
@@ -384,7 +409,9 @@ const BuyBracelet = () => {
                 maxLength={5}
                 required
               />
-              {errors.expiryDate && <ErrorMessage>{errors.expiryDate}</ErrorMessage>}
+              {errors.expiryDate && (
+                <ErrorMessage>{errors.expiryDate}</ErrorMessage>
+              )}
 
               <Label htmlFor="cvv">CVV</Label>
               <Input
@@ -400,9 +427,20 @@ const BuyBracelet = () => {
 
               <ItemPrice>Valor Total: R$ {totalPrice}</ItemPrice>
 
-              <ItemImage src="../img/cards/pulseira_vermelha.jfif" alt="Imagem do item" />
+              <ItemImage
+                src={
+                  braceletColor === "red"
+                    ? "../img/cards/braceletRed.png"
+                    : braceletColor === "green"
+                    ? "../img/cards/braceletGreen.png"
+                    : "../img/cards/braceletBlue.png"
+                }
+                alt="Imagem do item"
+              />
             </CardInfoGroup>
-          </Form></>}
+          </Form>
+        </>
+      )}
     </FormContainer>
   );
 };

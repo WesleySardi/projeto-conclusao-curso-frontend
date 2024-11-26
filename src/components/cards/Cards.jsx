@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled, { useTheme } from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { useScreenPositionContext } from "../../context/ScreenPositionProvider";
 
@@ -214,22 +215,18 @@ const CardText = styled.p`
 
   @media ${(props) => props.theme.breakpoints.largeDesktop} {
     font-size: 1rem;
-    min-height: 10vh;
   }
 
   @media ${(props) => props.theme.breakpoints.smallDesktop} {
     font-size: 1rem;
-    min-height: 17vh;
   }
 
   @media ${(props) => props.theme.breakpoints.tablet} {
     font-size: 1rem;
-    min-height: 25vh;
   }
 
   @media ${(props) => props.theme.breakpoints.mobile} {
     font-size: 1rem;
-    min-height: 15vh;
   }
 
   span {
@@ -344,7 +341,8 @@ const ContentContainer = styled.div`
 `;
 
 const Cards = () => {
-  const { isMobile, isTablet, isDarkMode } = useScreenPositionContext();
+  const { isMobile, isTablet, isDarkMode, setBraceletValue, setBraceletColor } =
+    useScreenPositionContext();
   const theme = useTheme();
 
   const navigate = useNavigate();
@@ -370,9 +368,23 @@ const Cards = () => {
             isMobile
               ? () =>
                   setTimeout(() => {
-                    navigate(theme.links.card1);
-                  }, 1000)
+                    toast.error(
+                      "Página de compra não compatível com dispositivos móveis.",
+                      {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        theme: "colored",
+                      }
+                    );
+                  }, 500)
               : () => {
+                  setBraceletColor("red");
+                  setBraceletValue(50);
+
                   navigate(theme.links.card1);
                 }
           }
@@ -399,9 +411,14 @@ const Cards = () => {
             isMobile
               ? () =>
                   setTimeout(() => {
-                    navigate(theme.links.card2);
+                    alert(
+                      "Página de compra não compatível com dispositivos móveis."
+                    );
                   }, 1000)
               : () => {
+                  setBraceletColor("green");
+                  setBraceletValue(60);
+
                   navigate(theme.links.card2);
                 }
           }
@@ -428,9 +445,14 @@ const Cards = () => {
             isMobile
               ? () =>
                   setTimeout(() => {
-                    navigate(theme.links.card3);
+                    alert(
+                      "Página de compra não compatível com dispositivos móveis."
+                    );
                   }, 1000)
               : () => {
+                  setBraceletColor("blue");
+                  setBraceletValue(40);
+
                   navigate(theme.links.card3);
                 }
           }
