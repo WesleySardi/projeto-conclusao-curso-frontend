@@ -13,13 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Force Git clone
-        run: |
-          git init
-          git remote add origin https://github.com/WesleySardi/projeto-conclusao-curso-frontend.git
-          git fetch
-          git reset --hard origin/master  # Ou 'master', dependendo da sua branch principal
-
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
@@ -36,6 +29,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # Checkout novamente para garantir que o código esteja sincronizado
+
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v20
         with:
