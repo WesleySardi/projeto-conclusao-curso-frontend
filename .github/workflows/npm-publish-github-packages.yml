@@ -3,7 +3,7 @@ name: Test and Deploy to Vercel
 on:
   push:
     branches:
-      - master  # ou "master", dependendo da sua branch principal
+      - master
 
 jobs:
   test:
