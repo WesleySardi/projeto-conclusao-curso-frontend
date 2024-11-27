@@ -267,7 +267,9 @@ const BuyBracelet = () => {
         setPaymentCondition(true);
 
         await axios.get(
-          `http://localhost:8080/api/email/sendQrCode?toEmail=wesley.sardi%40gmail.com`
+          `http://localhost:8080/api/email/sendQrCode?toEmail=${encodeURIComponent(
+            email
+          )}`
         );
       }, 3000);
     }
