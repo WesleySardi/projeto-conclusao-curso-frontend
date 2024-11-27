@@ -411,8 +411,17 @@ const Cards = () => {
             isMobile
               ? () =>
                   setTimeout(() => {
-                    alert(
-                      "Página de compra não compatível com dispositivos móveis."
+                    toast.error(
+                      "Página de compra não compatível com dispositivos móveis.",
+                      {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        theme: "colored",
+                      }
                     );
                   }, 1000)
               : () => {
@@ -445,8 +454,17 @@ const Cards = () => {
             isMobile
               ? () =>
                   setTimeout(() => {
-                    alert(
-                      "Página de compra não compatível com dispositivos móveis."
+                    toast.error(
+                      "Página de compra não compatível com dispositivos móveis.",
+                      {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        theme: "colored",
+                      }
                     );
                   }, 1000)
               : () => {
