@@ -129,6 +129,7 @@ const BuyBracelet = () => {
   const [cardNumber, setCardNumber] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
   const [cvv, setCvv] = useState("");
+  const [urlPath, setUrlPath] = useState(window.location.pathname.slice(1));
 
   const [errors, setErrors] = useState({});
 
@@ -233,9 +234,11 @@ const BuyBracelet = () => {
       },
       {
         field: "cardNumber",
-        value: cardNumber.replace(/\s+/g, ""),
-        validation: (value) => value && /^\d{4} \d{4} \d{4} \d{4}$/.test(value),
-        errorMessage: "O número do cartão é obrigatório e deve ter 16 dígitos.",
+        value: cardNumber.replace(/\s+/g, ""), // Remove os espaços para armazenar apenas os números
+        validation: (value) =>
+          value && /^\d{4} \d{4} \d{4} \d{4}$/.test(cardNumber),
+        errorMessage:
+          "O número do cartão é obrigatório e deve ter 16 dígitos no formato correto (XXXX XXXX XXXX XXXX).",
       },
       {
         field: "expiryDate",
@@ -297,7 +300,17 @@ const BuyBracelet = () => {
 
   return (
     <FormContainer>
-      {paymentCondition ? (
+      {urlPath === "downloadApp" ? (
+        <>
+          <TitleContainerPaid>
+            <TitlePaid>Aplicativo baixado com sucesso.</TitlePaid>
+            <ImagePaid
+              src="../img/icones/successIcon.png"
+              alt="Imagem de sucesso"
+            />
+          </TitleContainerPaid>
+        </>
+      ) : paymentCondition ? (
         <>
           <TitleContainerPaid>
             <TitlePaid>

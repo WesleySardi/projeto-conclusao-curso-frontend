@@ -30,6 +30,7 @@ const AppWrapper = () => {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/buyBracelet" element={<BuyBracelet />} />
+        <Route path="/downloadApp" element={<BuyBracelet />} />
         <Route path="*" element={<Navigate to="/home" replace />} />
       </Routes>
       <ToastContainer />

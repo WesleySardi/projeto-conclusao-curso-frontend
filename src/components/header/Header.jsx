@@ -442,21 +442,23 @@ const BackgroundStyleBlur = styled.div`
       animation: ${(props) =>
             props.isSidebarActive ? expandForMobile : "none"}
           0.2s forwards,
-        ${(props) =>
-            props.isDarkModeAnimationRunning
-              ? !props.isAtTop
-                ? expandForDarkMode
-                : "none"
-              : "none"}
+        ${(props) => {
+            if (props.isDarkModeAnimationRunning) {
+              return !props.isAtTop ? expandForDarkMode : "none";
+            }
+            return "none";
+          }}
           1.5s forwards,
-        ${(props) =>
-            !props.isAtTop
-              ? props.isDarkModeAnimationRunning
-                ? props.isDarkMode
+        ${(props) => {
+            if (!props.isAtTop) {
+              if (props.isDarkModeAnimationRunning) {
+                return props.isDarkMode
                   ? fadeInForDarkMode
-                  : fadeOutForDarkMode
-                : "none"
-              : "none"}
+                  : fadeOutForDarkMode;
+              }
+            }
+            return "none";
+          }}
           1.5s forwards;
     }
   }
@@ -468,9 +470,7 @@ const ImgStyleLogo = styled.img`
   left: 10vw;
   opacity: 1;
   ${(props) =>
-    props.isAtTop
-      ? { width: "15vh", top: "10vh" }
-      : props.isSidebarActive
+    props.isAtTop || props.isSidebarActive
       ? { width: "15vh", top: "10vh" }
       : { display: "none" }}
 
