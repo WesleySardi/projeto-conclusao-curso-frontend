@@ -854,14 +854,12 @@ const Header = () => {
       onMouseLeave={handleMouseLeave}
       {...commonProps}
     >
-      {isSidebarActive ? (
+      {isSidebarActive && (
         <DistributeProps {...commonProps}>
           <Sidebar />
         </DistributeProps>
-      ) : (
-        <></>
       )}
-      {isAtTop && !isMobile && !isTablet ? <TopBar /> : <></>}
+      {isAtTop && !isMobile && !isTablet && <TopBar />}
       <BackgroundStyle {...commonProps}>
         <BackgroundStyleBlur {...commonProps} />
         <HeaderStyle>
@@ -873,9 +871,7 @@ const Header = () => {
         <StyledDiv>
           {isMobile || isTablet ? (
             <StyledList>
-              {isSidebarActive ? (
-                <></>
-              ) : (
+              {!isSidebarActive && (
                 <DarkModeContainer isDarkMode={isDarkMode}>
                   <DarkModeButton
                     isDarkMode={isDarkMode}
