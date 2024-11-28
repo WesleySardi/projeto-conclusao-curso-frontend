@@ -659,23 +659,11 @@ const DarkModeButton = styled.button`
         : theme.colors.black
       : "#EEA200";
 
-    const borderColor = isDarkMode
-      ? isAtTop
-        ? theme.colors.black
-        : theme.colors.white
-      : theme.colors.white;
+    const commonColor =
+      isDarkMode && isAtTop ? theme.colors.black : theme.colors.white;
 
-    const textColor = isDarkModeAnimationRunning
-      ? isDarkMode
-        ? isAtTop
-          ? theme.colors.black
-          : theme.colors.white
-        : theme.colors.white
-      : isDarkMode
-      ? isAtTop
-        ? theme.colors.black
-        : theme.colors.white
-      : theme.colors.white;
+    const borderColor = commonColor;
+    const textColor = commonColor;
 
     const hoverBackgroundColor = isDarkMode ? "#323232" : "#DE9800";
     const hoverTextColor = theme.colors.white;
@@ -841,16 +829,17 @@ const Header = () => {
     }
   };
 
+  const handleToggleSidebar = () => {
+    if (!isDarkModeAnimationRunning) toggleSidebar();
+  };
+
   const toggleSidebar = () => {
-    if (isSidebarActive) {
-      setIsSidebarActive(false);
-      document.documentElement.style.overflowY = "auto";
-      document.body.style.overflowY = "auto";
-    } else {
-      setIsSidebarActive(true);
-      document.documentElement.style.overflowY = "hidden";
-      document.body.style.overflowY = "hidden";
-    }
+    setIsSidebarActive((prev) => {
+      const isActive = !prev;
+      document.documentElement.style.overflowY = isActive ? "hidden" : "auto";
+      document.body.style.overflowY = isActive ? "hidden" : "auto";
+      return isActive;
+    });
   };
 
   const DistributeProps = ({ children, ...props }) => {
@@ -891,7 +880,7 @@ const Header = () => {
                   <DarkModeButton
                     isDarkMode={isDarkMode}
                     onClick={toggleDarkMode}
-                    disabled={isDarkModeAnimationRunning ? true : false}
+                    disabled={isDarkModeAnimationRunning}
                   >
                     <DarkModeIcon
                       icon={isDarkMode ? faMoon : faSun}
@@ -902,9 +891,7 @@ const Header = () => {
               )}
               <Icon
                 icon={isSidebarActive ? faX : faBars}
-                onClick={
-                  isDarkModeAnimationRunning ? () => {} : () => toggleSidebar()
-                }
+                onClick={() => handleToggleSidebar()}
                 {...commonProps}
               />
             </StyledList>
@@ -924,15 +911,18 @@ const Header = () => {
               <ComboBoxContainer>
                 <DistributeProps {...commonProps}>
                   <ComboBoxButton
-                    onClick={
-                      isComboBoxActive
-                        ? () => {
-                            setIsComboBoxActive(false);
-                            document.documentElement.style.overflowY = "auto";
-                            document.body.style.overflowY = "auto";
-                          }
-                        : () => setIsComboBoxActive(true)
-                    }
+                    onClick={() => {
+                      setIsComboBoxActive((prev) => {
+                        const isActive = !prev;
+                        document.documentElement.style.overflowY = isActive
+                          ? "hidden"
+                          : "auto";
+                        document.body.style.overflowY = isActive
+                          ? "hidden"
+                          : "auto";
+                        return isActive;
+                      });
+                    }}
                   >
                     Institucional
                     <IconComboBox icon={faChevronDown} />
@@ -955,7 +945,7 @@ const Header = () => {
                   <DarkModeButton
                     isDarkMode={isDarkMode}
                     onClick={toggleDarkMode}
-                    disabled={isDarkModeAnimationRunning ? true : false}
+                    disabled={isDarkModeAnimationRunning}
                   >
                     <DarkModeIcon
                       icon={isDarkMode ? faMoon : faSun}
@@ -969,7 +959,7 @@ const Header = () => {
                 {...commonProps}
               >
                 <Icon icon={faCartShopping} {...commonProps} />
-                {isSmallDesktop ? "" : "E-commerce"}
+                {!isSmallDesktop && "E-commerce"}
               </StyledListItemAndIcon>
             </StyledList>
           )}
