@@ -652,44 +652,50 @@ const DarkModeContainer = styled.div`
 `;
 
 const DarkModeButton = styled.button`
-  background-color: ${(props) =>
-    props.isDarkMode
-      ? props.isAtTop
-        ? (props) => props.theme.colors.white
-        : (props) => props.theme.colors.black
-      : "#EEA200"};
-  border: 1px solid
-    ${(props) =>
-      props.isDarkMode
-        ? props.isAtTop
-          ? (props) => props.theme.colors.black
-          : (props) => props.theme.colors.white
-        : (props) => props.theme.colors.white};
-  border-radius: 50%;
-  color: ${(props) =>
-    props.isDarkModeAnimationRunning
-      ? props.isDarkMode
-        ? props.isAtTop
-          ? (props) => props.theme.colors.black
-          : (props) => props.theme.colors.white
-        : (props) => props.theme.colors.white
-      : props.isDarkMode
-      ? props.isAtTop
-        ? (props) => props.theme.colors.black
-        : (props) => props.theme.colors.white
-      : (props) => props.theme.colors.white};
-  cursor: pointer;
-  height: 100%;
-  transition: background-color 0.3s ease;
-  width: 100%;
+  ${({ theme, isDarkMode, isAtTop, isDarkModeAnimationRunning }) => {
+    const backgroundColor = isDarkMode
+      ? isAtTop
+        ? theme.colors.white
+        : theme.colors.black
+      : "#EEA200";
 
-  ${DarkModeContainer}:hover & {
-    background-color: ${(props) => (props.isDarkMode ? "#323232" : "#DE9800")};
-    color: ${(props) =>
-      props.isDarkMode
-        ? (props) => props.theme.colors.white
-        : (props) => props.theme.colors.white};
-  }
+    const borderColor = isDarkMode
+      ? isAtTop
+        ? theme.colors.black
+        : theme.colors.white
+      : theme.colors.white;
+
+    const textColor = isDarkModeAnimationRunning
+      ? isDarkMode
+        ? isAtTop
+          ? theme.colors.black
+          : theme.colors.white
+        : theme.colors.white
+      : isDarkMode
+      ? isAtTop
+        ? theme.colors.black
+        : theme.colors.white
+      : theme.colors.white;
+
+    const hoverBackgroundColor = isDarkMode ? "#323232" : "#DE9800";
+    const hoverTextColor = theme.colors.white;
+
+    return `
+      background-color: ${backgroundColor};
+      border: 1px solid ${borderColor};
+      border-radius: 50%;
+      color: ${textColor};
+      cursor: pointer;
+      height: 100%;
+      transition: background-color 0.3s ease;
+      width: 100%;
+
+      ${DarkModeContainer}:hover & {
+        background-color: ${hoverBackgroundColor};
+        color: ${hoverTextColor};
+      }
+    `;
+  }}
 `;
 
 const DarkModeIcon = styled(FontAwesomeIcon)`

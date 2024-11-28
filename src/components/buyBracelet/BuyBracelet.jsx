@@ -206,45 +206,58 @@ const BuyBracelet = () => {
     setPopupTitle("Carregando");
     setPopupType("loading");
 
-    const validationErrors = {};
+    const validationRules = [
+      {
+        field: "name",
+        value: name,
+        validation: (value) => value && !/\d/.test(value),
+        errorMessage: "O nome é obrigatório e não pode conter números.",
+      },
+      {
+        field: "email",
+        value: email,
+        validation: validateEmail,
+        errorMessage: "Email inválido.",
+      },
+      {
+        field: "phone",
+        value: phone,
+        validation: validatePhone,
+        errorMessage: "Telefone inválido.",
+      },
+      {
+        field: "address",
+        value: address,
+        validation: (value) => value,
+        errorMessage: "O endereço é obrigatório.",
+      },
+      {
+        field: "cardNumber",
+        value: cardNumber.replace(/\s+/g, ""),
+        validation: (value) => value && /^\d{4} \d{4} \d{4} \d{4}$/.test(value),
+        errorMessage: "O número do cartão é obrigatório e deve ter 16 dígitos.",
+      },
+      {
+        field: "expiryDate",
+        value: expiryDate,
+        validation: (value) => value && /^\d{2}\/\d{2}$/.test(value),
+        errorMessage:
+          "A data de validade é obrigatória e deve estar no formato MM/AA.",
+      },
+      {
+        field: "cvv",
+        value: cvv,
+        validation: (value) => value && /^\d{3}$/.test(value),
+        errorMessage: "O CVV é obrigatório e deve ter 3 dígitos.",
+      },
+    ];
 
-    if (!name || !validateName(name)) {
-      validationErrors.name = "O nome é obrigatório e não pode conter números.";
-    }
-
-    if (!name || /\d/.test(name)) {
-      validationErrors.name = "O nome é obrigatório e não pode conter números.";
-    }
-
-    if (!email || !validateEmail(email)) {
-      validationErrors.email = "Email inválido.";
-    }
-
-    if (!phone || !validatePhone(phone)) {
-      validationErrors.phone = "Telefone inválido.";
-    }
-
-    if (!address) {
-      validationErrors.address = "O endereço é obrigatório.";
-    }
-
-    if (!cardNumber.replace(/\s+/g, "")) {
-      validationErrors.cardNumber = "Número do cartão é obrigatório.";
-    }
-
-    if (!cardNumber || !/^\d{4} \d{4} \d{4} \d{4}$/.test(cardNumber)) {
-      validationErrors.cardNumber =
-        "O número do cartão é obrigatório e deve ter 16 dígitos.";
-    }
-
-    if (!expiryDate || !/^\d{2}\/\d{2}$/.test(expiryDate)) {
-      validationErrors.expiryDate =
-        "A data de validade é obrigatória e deve estar no formato MM/AA.";
-    }
-
-    if (!cvv || !/^\d{3}$/.test(cvv)) {
-      validationErrors.cvv = "O CVV é obrigatório e deve ter 3 dígitos.";
-    }
+    const validationErrors = validationRules.reduce((errors, rule) => {
+      if (!rule.validation(rule.value)) {
+        errors[rule.field] = rule.errorMessage;
+      }
+      return errors;
+    }, {});
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
