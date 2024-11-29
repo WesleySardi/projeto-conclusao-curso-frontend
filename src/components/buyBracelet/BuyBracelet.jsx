@@ -283,7 +283,7 @@ const BuyBracelet = () => {
         setPaymentCondition(true);
 
         await axios.get(
-          `http://localhost:8080/api/email/sendQrCode?toEmail=${encodeURIComponent(
+          `http://zlo-main-app.us-east-1.elasticbeanstalk.com/api/email/sendQrCode?toEmail=${encodeURIComponent(
             email
           )}`
         );
