@@ -28,7 +28,7 @@ const AppWrapper = () => {
       <GlobalStyles isDarkMode={isDarkMode} />
       {location.pathname === "/home" && <Header />}
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={<Home />} /> */}
         <Route path="/home" element={<Home />} />
         <Route path="/buyBracelet" element={<BuyBracelet />} />
         <Route path="/downloadApp" element={<BuyBracelet />} />
