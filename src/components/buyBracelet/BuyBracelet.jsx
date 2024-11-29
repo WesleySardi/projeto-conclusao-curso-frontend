@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useScreenPositionContext } from "../../context/ScreenPositionProvider";
@@ -130,19 +130,30 @@ const BuyBracelet = () => {
   const [expiryDate, setExpiryDate] = useState("");
   const [cvv, setCvv] = useState("");
   const [urlPath] = useState(window.location.pathname.slice(1));
-
   const [errors, setErrors] = useState({});
-
   const pricePerItem = braceletValue;
   const totalPrice = (quantity * pricePerItem).toFixed(2);
-
   const [isPopupActive, setIsPopupActive] = useState(false);
-
   const [popupType, setPopupType] = useState("loading");
   const [popupTitle, setPopupTitle] = useState("Carregando");
   const [popupText] = useState("Compra realizada com sucesso!");
-
   const [paymentCondition, setPaymentCondition] = useState(false);
+  const hasDownloaded = useRef(false);
+
+  useEffect(() => {
+    if (urlPath === "downloadApp" && !hasDownloaded.current) {
+      hasDownloaded.current = true;
+
+      const fileUrl =
+        "https://zlo-mobile.s3.us-east-1.amazonaws.com/app-release.apk";
+      const link = document.createElement("a");
+      link.href = fileUrl;
+      link.download = "app-release.apk";
+      link.click();
+
+      console.log("Download iniciado!");
+    }
+  }, [urlPath]);
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
