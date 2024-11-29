@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled, { keyframes, css, useTheme } from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -740,7 +740,6 @@ const Header = () => {
     setIsDarkMode,
   } = useScreenPositionContext();
   const theme = useTheme();
-  const navigate = useNavigate();
 
   const [isDarkModeAnimationRunning, setIsDarkModeAnimationRunning] =
     useState(false);

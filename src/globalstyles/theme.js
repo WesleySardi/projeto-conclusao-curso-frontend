@@ -116,8 +116,6 @@ const theme = {
     home: "/",
     produtos: "/",
     blog: "/",
-    quemSomos: "/",
-    trabalheConosco: "/",
     contato: "/",
     ecommerce: "/",
     confiraJa: "/",
