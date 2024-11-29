@@ -129,7 +129,7 @@ const BuyBracelet = () => {
   const [cardNumber, setCardNumber] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
   const [cvv, setCvv] = useState("");
-  const [urlPath, setUrlPath] = useState(window.location.pathname.slice(1));
+  const [urlPath] = useState(window.location.pathname.slice(1));
 
   const [errors, setErrors] = useState({});
 
@@ -143,11 +143,6 @@ const BuyBracelet = () => {
   const [popupText] = useState("Compra realizada com sucesso!");
 
   const [paymentCondition, setPaymentCondition] = useState(false);
-
-  const validateName = (name) => {
-    const re = /^[A-Za-z\s]+$/;
-    return re.test(name);
-  };
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

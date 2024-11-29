@@ -8,10 +8,10 @@ import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 import ErrorPopUp from "../popup/ErrorPopup";
 
 // Hooks
-import { userSelector, useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 // Redux
-import { submitForm, reset } from "../../slices/authSlice"; // Importe a nova ação
+import { submitForm } from "../../slices/authSlice"; // Importe a nova ação
 
 const AdditionalContent = styled.div`
   width: 90%;
@@ -403,8 +403,6 @@ const FormBanner = () => {
   const [popupText, setPopupText] = useState("");
 
   const dispatch = useDispatch();
-
-  const { loading, error } = useSelector((state) => state.auth);
 
   const isInputValid = (value, inputType) => {
     if (inputType === "email") {
