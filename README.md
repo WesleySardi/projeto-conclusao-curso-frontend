@@ -61,7 +61,7 @@ O Axios gerencia a comunicação com APIs externas, como serviços de pagamento 
 ### Notificações
 Utilizamos React Toastify para mensagens de feedback ao usuário, como confirmações de compra ou erros.
 
-### Conclusão
+## Conclusão
 Este projeto foi projetado para oferecer uma experiência de compra eficiente, informativa e intuitiva, representando o compromisso do grupo Zlo com a tecnologia acessível e funcional.
 
 ### Desenvolvedores
