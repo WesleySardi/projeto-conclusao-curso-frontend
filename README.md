@@ -46,8 +46,8 @@ site-vendas/
 
 ### Descrição das Páginas
 - Home: Página principal com apresentação do grupo Zlo e as funcionalidades da pulseira.
-- Compra: Interface para realizar a compra das pulseiras, integrada a serviços de pagamento.
-- Download: Área para o usuário baixar o aplicativo complementar.
+- Compra: Interface para realizar a compra das pulseiras.
+- Download: Área para o usuário baixar o aplicativo.
 
 ### Estilo e Componentização
 O projeto utiliza Styled Components para criar componentes estilizados de forma modular e reutilizável, garantindo consistência visual em todas as páginas.
